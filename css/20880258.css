@@ -96,6 +96,10 @@ h1 {
     padding-top: 0;
 }
 
+.web1-text-blue {
+    color: var(--web1-blue);
+}
+
 /* About us */
 #aboutus {
     background: var(--web1-pink);
@@ -108,6 +112,8 @@ h1 {
 
 #news .date {
     background-color: var(--web1-green);
+    width: 6rem;
+    padding: 1.5rem;
 }
 
 footer {
@@ -129,4 +135,9 @@ footer {
 #formLogin button[type='submit'] {
     background-color: var(--web1-blue);
     color: white;
+}
+
+#banner-small {
+    background-image: url('/images/bg-banner.gif');
+    padding: 5px;
 }

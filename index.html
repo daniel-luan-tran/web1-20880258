@@ -63,7 +63,7 @@
     </nav>
     
   </header>
-
+  <div id="content">
   <!-- Banner -->
   <section class="container-fluid" id="banner">
     <div class="container text-white text-center">
@@ -101,38 +101,7 @@
   </section>
 
   <!-- Products -->
-  <section class="container">
-    <div class="row text-center py-5">
-        <div class="col-lg-3 col-md-6 col-sm-12">
-            <img src="images/icon-1.png" alt="Coffee">
-            <h3>Coffee</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit commodi tempore fugit quos earum laudantium facilis atque! Aliquid voluptas laudantium impedit 
-            distinctio ad, pariatur sit nemo magni quam, nostrum repellendus!</p>
-            <a class="btn btn-link" href="#">Read more</a>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
-            <img src="images/icon-2.png" alt="Drinks">
-            <h3>Drinks</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit commodi tempore fugit quos earum laudantium facilis atque! Aliquid voluptas laudantium impedit 
-            distinctio ad, pariatur sit nemo magni quam, nostrum repellendus!</p>
-            <a class="btn btn-link" href="#">Read more</a>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
-            <img src="images/icon-3.png" alt="Cakes">
-            <h3>Cakes</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit commodi tempore fugit quos earum laudantium facilis atque! Aliquid voluptas laudantium impedit 
-            distinctio ad, pariatur sit nemo magni quam, nostrum repellendus!</p>
-            <a class="btn btn-link" href="#">Read more</a>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
-            <img src="images/icon-4.png" alt="Ice Scream">
-            <h3>Ice Scream</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit commodi tempore fugit quos earum laudantium facilis atque! Aliquid voluptas laudantium impedit 
-            distinctio ad, pariatur sit nemo magni quam, nostrum repellendus!</p>
-            <a class="btn btn-link" href="#">Read more</a>
-        </div>
-    </div>
-  </section>
+  <section class="container" id="products"></section>
 
   <!-- About us -->
   <section class="container-fluid" id="aboutus">
@@ -164,56 +133,8 @@
   </section>
 
   <!-- News -->
-  <section class="container-fluid py-5" id="news">
-    <h1 class="text-black-10">News</h1>
-    <div class="row py-3">
-        <div class="col">
-            <div class="float-start me-3">
-                <div class="date text-white text-center rounded-4 py-1">
-                    <h3>
-                        Dec. <br/>
-                        25
-                    </h3>
-                </div>
-                <a href="#" class="btn btn-link readmore">Read more</a>
-            </div>
-            <div>
-                <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, nesciunt?</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architectot.</p>
-            </div>
-        </div>
-        <div class="col">
-            <div class="float-start me-3">
-                <div class="date text-white text-center rounded-4 py-1">
-                    <h3>
-                        Dec. <br/>
-                        25
-                    </h3>
-                </div>
-                <a href="#" class="btn btn-link readmore">Read more</a>
-            </div>
-            <div>
-                <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, nesciunt?</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architectot.</p>
-            </div>
-        </div>
-        <div class="col">
-            <div class="float-start me-3">
-                <div class="date text-white text-center rounded-4 py-1">
-                    <h3>
-                        Dec. <br/>
-                        25
-                    </h3>
-                </div>
-                <a href="#" class="btn btn-link readmore">Read more</a>
-            </div>
-            <div>
-                <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, nesciunt?</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architectot.</p>
-            </div>
-        </div>
-    </div>
-  </section>
+  <section class="container-fluid py-5" id="news"></section>
+</div>
   
     <!-- Modal Body -->
     <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
@@ -265,12 +186,6 @@
     <p class="text-white-50">Copy right &copy 2022 - 2023 - 20880258 - Trần Quốc Bảo Luân</p>
   </footer>
   
-  <!-- Optional: Place to the bottom of scripts -->
-  <script>
-    const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
-  
-  </script>
-
   <!-- Font awesome -->
   <script src="https://kit.fontawesome.com/5525f8fd09.js" crossorigin="anonymous"></script>
 
@@ -287,6 +202,86 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
+
+    <!-- Include Handlebars from a CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" 
+    integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script id="products-template" type="text/x-handlebars-template">
+        <div class="row text-center py-5">
+            {{#each products}}
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <img src="{{imagepath}}" alt="{{name}}"
+                    onmouseover="setActiveImgPath(this, '{{imagepath}}')"
+                    onmouseout="setActiveImgPath(this, '{{imagepath}}', false)"
+                >
+                <h3>{{name}}</h3>
+                <p>{{summary}}</p>
+                <a class="btn btn-link" href="#" 
+                    onclick="loadData(`products/{{id}}`, 'details-template', 'content')"
+                >
+                    Read more
+                </a>
+            </div>
+            {{/each}}
+        </div>
+    </script>
+
+    <script id="news-template" type="text/x-handlebars-template">
+        <h1 class="text-black-10">News</h1>
+        <div class="row py-3">
+            {{#each news}}
+            <div class="col">
+                <div class="float-start me-3">
+                    <div class="date text-white text-center rounded-4 py-1">
+                        <h3>
+                            {{date}}
+                        </h3>
+                    </div>
+                    <a href="#" class="btn btn-link readmore"
+                        onclick="loadData(`news/{{id}}`, 'details-template', 'content')"
+                    >
+                        Read more
+                    </a>
+                </div>
+                <div>
+                    <h3>{{name}}/h3>
+                    <p>{{summary}}</p>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </script>
+
+    <script id="details-template" type="text/x-handlebars-template">
+        <section class="container-fluid" id="banner-small"></section>
+        {{#each content}}
+        <section class="container py-5">
+            <h1 class="pb-3">{{name}}</h1>
+            <div class="text-black-50">{{{description}}}</div>
+        </section>
+        {{/each}}
+    </script>
+    
+    <script src="/js/20880258.js"></script>
+    <script >
+        // compile the template
+        var template = Handlebars.compile("Handlebars <b>{{doesWhat}}</b>");
+        // execute the compiled template and print the output to the console
+        console.log(template({ doesWhat: "rocks!" }));
+
+        loadData("products", "products-template", "products");
+        loadData("news", "news-template", "news");
+        
+        function setActiveImgPath(img, imagepath, isActive=true) {
+            if (isActive)
+                img.src = imagepath.replace('.', '-active.');
+            else
+                img.src = imagepath;
+            img.nextElementSibling.classList.toggle('web1-text-blue');
+        }
+    </script>
 
   <!-- Web1 CSS -->
   <link rel="stylesheet" href="/css/20880258.css">
