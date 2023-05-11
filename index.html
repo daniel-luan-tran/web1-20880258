@@ -42,7 +42,10 @@
                         <a class="nav-link" href="contacts.html">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modallogin">Login</a>
+                        <a class="nav-link linklogin" href="#" data-bs-toggle="modal" data-bs-target="#modallogin">Login</a>
+                        <a class="nav-link linklogout" href="#"
+                            onclick="logout();"
+                        >Logout</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -145,18 +148,19 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="#" method="post" id="formLogin">
+                <form action="#" method="post" id="formLogin" onsubmit="login(event);">
                     <h3 class="text-center">Login form</h3>
                     <div class="mb-3">
-                        <input type="text" name="usename" id="username" class="form-control" placeholder="Username">
+                        <input type="text" name="usename" id="username" class="form-control" placeholder="Username" required>
                     </div>
                     <div class="mb-3">
-                        <input type="password" name="password" id="password" class="form-control" placeholder="Password"></input>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required></input>
                     </div>
                     <button type="submit" class="form-control">Login</button>
                 </form>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer justify-content-center">
+                <div class="text-danger" id="errorMessage"></div>
             </div>
         </div>
     </div>
@@ -180,7 +184,10 @@
             <a class="nav-link" href="contacts.html">Contacts</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modallogin">Login</a>
+            <a class="nav-link linklogin" href="#" data-bs-toggle="modal" data-bs-target="#modallogin">Login</a>
+            <a class="nav-link linklogout" href="#"
+                onclick="logout();"
+            >Logout</a>
         </li>
     </ul>
     <p class="text-white-50">Copy right &copy 2022 - 2023 - 20880258 - Trần Quốc Bảo Luân</p>
