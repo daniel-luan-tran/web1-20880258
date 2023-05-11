@@ -27,7 +27,7 @@
             <div class="collapse navbar-collapse" id="menu-header">
                 <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.html" aria-current="page">Home <span class="visually-hidden">(current)</span></a>
+                        <a class="nav-link" href="index.html" aria-current="page">Home <span class="visually-hidden">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="about.html">About</a>
@@ -39,7 +39,7 @@
                         <a class="nav-link" href="blogs.html">Blogs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contacts.html">Contact</a>
+                        <a class="nav-link active" href="contacts.html">Contact</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modallogin">Login</a>
@@ -66,7 +66,77 @@
 
   <section class="container-fluid py-5">
     <h1>Contacts</h1>
-  </section>
+    <div class="mapouter">
+    <div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=1000&amp;height=600&amp;hl=en&amp;q=University of Science - VNUHCM, 227 Đ. Nguyễn Văn Cừ, Phường 4, Quận 5, Thành phố Hồ Chí Minh, Vietnam&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://capcuttemplate.org/">Capcuttemplate.org</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:600px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:600px;}.gmap_iframe {height:600px!important;}</style></div>    
+    <div class="row py-3">
+        <div class="col">
+            <h1>Address:</h1>
+            <div class="py-3 text-black-50">
+                227 Nguyen Van Cu Street <br/>
+                District 5 <br/>
+                Ho Chi Minh City, Vietnam
+            </div>
+        </div>
+        <div class="col">
+            <h1>Phone:</h1>
+            <div class="py-3 text-black-50">
+                +1 800 559 6580 <br/>
+                +1 504 889 9898
+            </div>
+        </div>
+        <div class="col">
+            <h1>Email:</h1>
+            <div class="py-3 text-black-50">
+                <a href="mailto:info@hcmus.edu.vn">info@hcmus.edu.vn</a>
+            </div>
+        </div>
+    </div>
+    <div class="py-3">
+        <h1>Miscellaneous information:</h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad laborum voluptates quibusdam nihil quas architecto neque 
+            voluptatibus eum maxime qui. In minus veniam, libero autem facere veritatis assumenda ratione sed!
+        </p>
+        <p>
+            <i>Send an emaily.  All fields with an * are required</i>
+        </p>
+        <form action="" method="post">
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                      <label for="name" class="form-label">Name *</label>
+                      <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Email *</label>
+                      <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                      <label for="subject" class="form-label">Email *</label>
+                      <input type="text" class="form-control" name="subject" id="subject" placeholder="Enter your subject" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message *</label>
+                    <textarea class="form-control" name="message" id="message" rows="3" required></textarea>
+                </div>
+            </div>
+            <div class="form-check float-end">
+                <label class="form-check-label me-4" for="copy">
+                    Send copy to yourself
+                </label>
+                <input class="form-check-input" type="checkbox" value="1" id="copy">
+                <button type="submit" class="btn btn-primary">Send email to us</button>
+            </div>
+        </form>
+    </div>
+</section>
   
     <!-- Modal Body -->
     <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
@@ -97,7 +167,7 @@
   <footer class="text-center container-fluid text-white overflow-auto" id="menu-footer">
     <ul class="nav justify-content-center py-3">
         <li class="nav-item">
-            <a class="nav-link active" href="index.html" aria-current="page">Home</a>
+            <a class="nav-link" href="index.html" aria-current="page">Home</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="about.html">About</a>
@@ -109,7 +179,7 @@
             <a class="nav-link" href="blogs.html">Blogs</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="contacts.html">Contacts</a>
+            <a class="nav-link active" href="contacts.html">Contacts</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modallogin">Login</a>
