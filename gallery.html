@@ -27,13 +27,13 @@
             <div class="collapse navbar-collapse" id="menu-header">
                 <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.html" aria-current="page">Home <span class="visually-hidden">(current)</span></a>
+                        <a class="nav-link" href="index.html" aria-current="page">Home <span class="visually-hidden">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="about.html">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="gallery.html">Gallery</a>
+                        <a class="nav-link active" href="gallery.html">Gallery</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="blogs.html">Blogs</a>
@@ -64,8 +64,13 @@
     
   </header>
 
+  <section id="banner-small"></section>
+
   <section class="container-fluid py-5">
     <h1>Gallery</h1>
+    <strong>Filter by category</strong>
+    <ul class="nav" id="gallery-categories"></ul>
+    <div class="row py-2" id="gallery"></div>
   </section>
   
     <!-- Modal Body -->
@@ -97,13 +102,13 @@
   <footer class="text-center container-fluid text-white overflow-auto" id="menu-footer">
     <ul class="nav justify-content-center py-3">
         <li class="nav-item">
-            <a class="nav-link active" href="index.html" aria-current="page">Home</a>
+            <a class="nav-link" href="index.html" aria-current="page">Home</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="about.html">About</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="gallery.html">Gallery</a>
+            <a class="nav-link active" href="gallery.html">Gallery</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="blogs.html">Blogs</a>
@@ -134,6 +139,48 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
+
+    <!-- Include Handlebars from a CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"
+    integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/js/20880258.js"></script>
+
+    <script id="gallery-categories-template" type="text/x-handlebars-template">
+        <li class="nav-item">
+            <a class="nav-link ps-0 disabled" href="#" aria-current="page"
+                onclick="loadData('gallery/', 'gallery-template', 'gallery'); disableLink(this)"
+            >All show</a>
+        </li>
+        {{#each gallerycategories}}
+        <li class="nav-item">
+            <a class="nav-link ps-0" href="#" aria-current="page"
+                onclick="loadData('gallery/categories/{{id}}', 'gallery-template', 'gallery'); disableLink(this)"
+            >{{name}}</a>
+        </li>
+        {{/each}}
+    </script>
+
+    <script id="gallery-template" type="text/x-handlebars-template">
+    {{#each gallery}}
+        <div class="col-md-3">
+            <img src="{{imagepath}}" alt="image1" class="img-thumbnail mb-3">
+        </div>
+    {{/each}}
+    </script>
+
+    <script>
+        loadData("gallery-categories", "gallery-categories-template", "gallery-categories");
+        loadData("gallery", "gallery-template", "gallery");
+
+        function disableLink(link) {
+            let links = document.querySelectorAll("#gallery-categories a");
+            for (let i = 0; i < links.length; i++) {
+                links[i].classList.remove('disabled');
+            }
+            link.classList.toggle("disabled");
+        }
+    </script>
 
   <!-- Web1 CSS -->
   <link rel="stylesheet" href="/css/20880258.css">
