@@ -79,28 +79,29 @@
     <!-- Modal Body -->
     <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
     <div class="modal fade" id="modallogin" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="#" method="post" id="formLogin">
-                    <h3 class="text-center">Login form</h3>
-                    <div class="mb-3">
-                        <input type="text" name="usename" id="username" class="form-control" placeholder="Username">
-                    </div>
-                    <div class="mb-3">
-                        <input type="password" name="password" id="password" class="form-control" placeholder="Password"></input>
-                    </div>
-                    <button type="submit" class="form-control">Login</button>
-                </form>
-            </div>
-            <div class="modal-footer">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="post" id="formLogin" onsubmit="login(event);">
+                        <h3 class="text-center">Login form</h3>
+                        <div class="mb-3">
+                            <input type="text" name="usename" id="username" class="form-control" placeholder="Username" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Password" required></input>
+                        </div>
+                        <button type="submit" class="form-control">Login</button>
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <div class="text-danger" id="errorMessage"></div>
+                </div>
             </div>
         </div>
-    </div>
-    </div>
+        </div>
 
   <footer class="text-center container-fluid text-white overflow-auto" id="menu-footer">
     <ul class="nav justify-content-center py-3">
@@ -217,9 +218,10 @@
                 <p>by {{author}} in {{category.name}} on {{formatDate date}} <a href="#">Comments ({{comments.length}})</a> </p>
                 <img src="{{imagepath}}" alt="{{name}}" class="float-start rounded-4 me-3">
                 <p>{{{description}}}</p>
-                <div class="py-3">
+                <div class="py-3 {{../isShow}}" id="leave-comment">
                     <h3>Leave your comment here!</h3>
-                    <form action="" method="post">
+                    <form action="" method="post" onsubmit="addComment(event)">
+                        <input type="hidden" name="blodId" value="{{id}}" id="blogId">
                         <div class="row text-black-50">
                             <div class="col-4">
                                 <div class="mb-3">
@@ -253,6 +255,9 @@
                                 <button type="submit" class="btn btn-primary">Submit comment</button>
                             </div>
                         </div>
+                        <div class="text-center">
+                            <div class="text-success" id="responseMessage"></div>
+                        </div>
                     </form>
                 </div>
                 <div class="bg-dark text-white-50" id="comments">
@@ -272,6 +277,43 @@
 
 
     <script>
+        async function addComment(e) {
+            e.preventDefault();
+
+            let token = localStorage.getItem('token');
+
+            let postData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                comment: document.getElementById('message').value,
+                blogId: document.getElementById('blogId').value,
+                agree: (document.getElementById('agree').value == 1)
+            }
+
+            let responseMessage = document.getElementById('responseMessage');
+            try {
+                let response = await fetch(`${AUTHENTICATIE_API}/comment`,{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'Authorization' : "Bearer" + token
+                    },
+                    body: JSON.stringify(postData)
+                });
+                let result = await response.json();
+                if (response.status == 200) {
+                    loadBlogDetails(postData.blodId, true);
+                } else {
+                    // throw new Error(result.message);
+                    responseMessage.innerHTML = result.message;
+                    responseMessage.className = 'text-danger';
+                }
+            } catch (error) {
+
+            }
+        }
+
         async function loadBlogDetails(blogId, goToComments) {
             await loadData(`blogs/${blogId}`, 'details-template', 'content');
             setTimeout(() => {

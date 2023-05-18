@@ -4,12 +4,15 @@ const AUTHENTICATIE_API = 'https://web1-api.vercel.app/users';
 //password: W3b1@Project
 async function loadData(request, templateId, viewId) {
     const res = await fetch(`${apiRootUrl}/${request}`);
-    
     const data = await res.json();
     var source = document.getElementById(`${templateId}`).innerHTML;
     var template = Handlebars.compile(source);
 
-    var context = { [`${viewId.replace("-", "")}`]: data };
+    let isLogin = await checkLogin();
+    let isShow = "hide";
+    if (isLogin) isShow = "show";
+
+    var context = { [`${viewId.replace("-", "")}`]: data, isShow: isShow };
     var productsView = document.getElementById(`${viewId}`);
     console.log(template(context))
     productsView.innerHTML = template(context);
@@ -62,6 +65,7 @@ async function login(e) {
         let token = await getAuthToken(username, password);
         if (token) {
             localStorage.setItem('token', token);
+            location.reload();
             document.getElementsByClassName('btn-close')[0].click();
             displayControls();
         }
@@ -73,6 +77,7 @@ async function login(e) {
 
 async function logout() {
     localStorage.removeItem('token');
+    location.reload();
     checkLogin();
 }
 
@@ -98,11 +103,11 @@ async function checkLogin() {
     let token = localStorage.getItem('token');
     if (!token) {
         displayControls(false);
-        return;
+        return false;
     } else {
         displayControls();
+        return true;
     }
 }
 
 checkLogin();
-logout();

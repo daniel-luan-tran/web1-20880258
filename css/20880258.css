@@ -157,3 +157,12 @@ footer {
     background: url('/images/marker1.png') 0 0 no-repeat;
     padding: 0 0 0.5rem 1.5rem;
 }
+
+/* Comment */
+#leave-comment.show {
+    display: block;
+}
+
+#leave-comment.hide {
+    display: none;
+}
