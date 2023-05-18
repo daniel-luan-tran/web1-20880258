@@ -225,9 +225,9 @@
                 >
                 <h3>{{name}}</h3>
                 <p>{{summary}}</p>
-                <a class="btn btn-link" href="#" 
-                    onclick="loadData(`products/{{id}}`, 'details-template', 'content')"
+                <a class="btn btn-link" href="?request=products/{{id}}" 
                 >
+                <!-- onclick="loadData(`products/{{id}}`, 'details-template', 'content')" -->
                     Read more
                 </a>
             </div>
@@ -246,9 +246,9 @@
                             {{date}}
                         </h3>
                     </div>
-                    <a href="#" class="btn btn-link readmore"
-                        onclick="loadData(`news/{{id}}`, 'details-template', 'content')"
+                    <a href="?request=news/{{id}}" class="btn btn-link readmore"
                     >
+                    <!-- onclick="loadData(`news/{{id}}`, 'details-template', 'content')" -->
                         Read more
                     </a>
                 </div>
@@ -277,9 +277,15 @@
         var template = Handlebars.compile("Handlebars <b>{{doesWhat}}</b>");
         // execute the compiled template and print the output to the console
         console.log(template({ doesWhat: "rocks!" }));
-
-        loadData("products", "products-template", "products");
-        loadData("news", "news-template", "news");
+        
+        let searchParams = new URLSearchParams(location.search || "");
+        let request = searchParams.get("request");
+        if (request) {
+            loadData(request, "details-template", "content");
+        } else {
+            loadData("products", "products-template", "products");
+            loadData("news", "news-template", "news");
+        }
         
         function setActiveImgPath(img, imagepath, isActive=true) {
             if (isActive)

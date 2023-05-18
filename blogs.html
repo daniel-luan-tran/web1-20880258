@@ -161,15 +161,17 @@
         <div class="clearfix py-3">
             <h3>{{name}}</h3>
             <p class="text-black-50"> by {{author}} <a href="">{{category.name}}</a> on {{formatDate date}}. 
-                <a href="#"
-                    onclick="loadBlogDetails('{{id}}', true)"
-                >Comment</a> 
+                <a href="?request={{id}}&isGoToComment=true"
+                >
+                <!-- onclick="loadBlogDetails('{{id}}', true)" -->
+                Comment</a> 
             </p>
             <img src="{{thumbpath}}" alt="{{name}}" class="float-start me-3 border rounded-4">
             <p class="text-black-50">{{summary}}</p>
-            <a href="#" class="btn btn-link readmore ps-0"
-            onclick="loadBlogDetails('{{id}}')"
-            >Read more</a>
+            <a href="?request={{id}}" class="btn btn-link readmore ps-0"
+            >
+            <!-- onclick="loadBlogDetails('{{id}}')" -->
+            Read more</a>
         </div>
         {{/each}}
 
@@ -290,8 +292,16 @@
             }
             return formatDate.toLocaleString('en-US', options);
         })
-        loadData("blogs-categories", "blogs-categories-template", "blogs-categories");
-        loadBlogs("blogs","blogs-template", "blogs");
+
+        let searchParams = new URLSearchParams(location.search || "");
+        let request = searchParams.get("request");
+        let isGoToComment = searchParams.get("isGoToComment");
+        if (request) {
+            loadBlogDetails(request, isGoToComment);
+        } else {
+            loadData("blogs-categories", "blogs-categories-template", "blogs-categories");
+            loadBlogs("blogs","blogs-template", "blogs");
+        }
     </script>
 
   <!-- Web1 CSS -->
